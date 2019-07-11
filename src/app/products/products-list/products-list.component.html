@@ -1,4 +1,4 @@
-<h1>Products</h1>
+<!-- <h1>Products</h1>
 <section class="mat-typography">
   <mat-list>
     <mat-list-item *ngFor="let product of products" style='height:auto'>
@@ -21,4 +21,29 @@
     <mat-paginator [length]="numberOfProducts" pageSize="10" [pageIndex]="pageNumber" (page)="onPageChanged($event)">
     </mat-paginator>
   </mat-list>
+</section> -->
+
+<h1>Products</h1>
+<section class="mat-typography">
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly stretch" fxLayoutGap="1em">
+    <div *ngFor="let product of products" style='max-width: 400px;'>
+      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="1em" class="padded">
+        <img [src]="product.image" [alt]="product.name" onError="this.src = 'assets/broken.png'">
+        <div fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="gappx">
+          <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0.3em">
+            <b>{{ product.name.length > 70 ? (product.name | slice:0:70) + '...' : product.name }}</b>
+            <p>{{ product.price | currency }}</p>
+            <p>{{ product.sold }} sold</p>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0.5em">
+            <button mat-raised-button color="primary">BUY NOW!</button>
+            <button mat-raised-button>ADD TO CART</button>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+  <mat-paginator [length]="numberOfProducts" pageSize="10" [pageIndex]="pageNumber" (page)="onPageChanged($event)">
+  </mat-paginator>
 </section>
