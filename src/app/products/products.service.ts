@@ -11,6 +11,6 @@ export class ProductsService {
   ) { }
 
   getProducts(pageNumber = 0, pageSize = 10) {
-    return this.http.get(`http://192.168.1.9:3000/api/products?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+    return this.http.get(`http://192.168.1.12:3000/api/products?pageNumber=${pageNumber}&pageSize=${pageSize}`);
   }
 }
