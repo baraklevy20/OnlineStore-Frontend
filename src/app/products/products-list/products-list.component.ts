@@ -1,3 +1,4 @@
+import { PurchasesService } from './../../purchases/purchases.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,6 +16,7 @@ export class ProductsListComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
+    private purchasesService: PurchasesService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -64,5 +66,13 @@ export class ProductsListComponent implements OnInit {
 
     // And scroll to top
     window.scroll(0, 0);
+  }
+
+  onBuyNow(product) {
+    this.purchasesService.buyNow(product);
+  }
+
+  onAddToCart(product) {
+    this.purchasesService.addToCart(product);
   }
 }

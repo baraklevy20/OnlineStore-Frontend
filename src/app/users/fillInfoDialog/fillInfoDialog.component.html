@@ -1,0 +1,24 @@
+<section class="mat-typography">
+  <h1 mat-dialog-title>Please first fill your information!</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="fillUserInfoForm" autocomplete="off">
+      <p>Pick a username</p>
+      <mat-form-field class="full-length" name="username">
+        <input matInput formControlName="username" required minlength="4" maxLength="30" [pattern]="'^[a-zA-Z0-9]+$'">
+        <mat-hint align="end">4-30 characters long.</mat-hint>
+        <mat-error *ngIf="hasError('username', 'required')">Username is required</mat-error>
+        <mat-error *ngIf="hasError('username', 'minlength')">Username is too short</mat-error>
+        <mat-error *ngIf="hasError('username', 'maxlength')">Username is too long</mat-error>
+      </mat-form-field>
+      <p>What's your address?</p>
+      <mat-form-field class="full-length">
+        <input name="address" formControlName="address" matInput required>
+        <mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">I want to explore more</button>
+    <button mat-button [mat-dialog-close]="getDataFromForm()" [disabled]="!fillUserInfoForm.valid">Ok</button>
+  </div>
+</section>

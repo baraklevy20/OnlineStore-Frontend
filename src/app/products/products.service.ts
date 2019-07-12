@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,6 +12,6 @@ export class ProductsService {
   ) { }
 
   getProducts(pageNumber = 0, pageSize = 10) {
-    return this.http.get(`http://192.168.1.12:3000/api/products?pageNumber=${pageNumber}&pageSize=${pageSize}`);
+    return this.http.get(`${environment.api_base_url}/products?pageNumber=${pageNumber}&pageSize=${pageSize}`);
   }
 }
