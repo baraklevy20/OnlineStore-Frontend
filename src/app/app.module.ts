@@ -1,3 +1,5 @@
+import { PurchasesListComponent } from './purchases/purchases-list/purchases-list.component';
+import { PurchaseDialogComponent } from './purchases/purchaseDialog/purchaseDialog.component';
 import { GlobalErrorHandler } from './GlobalErrorHandler';
 import { AppComponent } from './app.component';
 import { CustomHttpInterceptor } from './CustomHttpInterceptor';
@@ -16,10 +18,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     ProductsListComponent,
-    FillInfoDialogComponent
+    FillInfoDialogComponent,
+    PurchaseDialogComponent,
+    PurchasesListComponent
   ],
   entryComponents: [
-    FillInfoDialogComponent
+    FillInfoDialogComponent,
+    PurchaseDialogComponent
   ],
   imports: [
     BrowserModule,

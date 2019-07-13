@@ -9,6 +9,14 @@ export class GlobalErrorHandler implements ErrorHandler {
     ) { }
 
     handleError(error) {
+        // Ignore paypal window closed error. The message is generated when the paypal script
+        // is still being loaded, but the payment window was closed.
+        // Since we use a global error handler, this gets here first and not the onError
+        // callback of the paypal configuration. Hence this has to be taken care of here.
+        if (error == 'Error: Window closed') {
+            return; 
+        }
+
         // Add logging mechanism, send to server, etc. Here we simply show the error and 'log' it
         console.log(error);
 

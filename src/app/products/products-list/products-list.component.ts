@@ -10,18 +10,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProductsListComponent implements OnInit {
   products;
-  numberOfProducts = 100;
+  numberOfProducts;
   pageNumber;
   pageSize;
 
   constructor(
-    private productsService: ProductsService,
+    public productsService: ProductsService,
     private purchasesService: PurchasesService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
+    this.productsService.productsObservable
+      .subscribe(products => this.products = products);
+
+    this.productsService.numberOfProductsObservable
+      .subscribe(numberOfProducts => this.numberOfProducts = numberOfProducts);
+
     // Once the page number/size changes, we get new products
     this.route.queryParams.subscribe(params => {
       // If the page number is empty, set it to 0
@@ -47,11 +54,8 @@ export class ProductsListComponent implements OnInit {
       this.pageNumber = params['pageNumber'];
       this.pageSize = params['pageSize'];
 
-      // Get the products using the page number and size
-      this.productsService.getProducts(params['pageNumber'], params['pageSize']).subscribe(result => {
-        this.products = result["products"];
-        this.numberOfProducts = result["numberOfProducts"];
-      })
+      // Update the products using the page number and size
+      this.productsService.updateProducts(params['pageNumber'], params['pageSize']);
     });
   }
 
@@ -70,9 +74,5 @@ export class ProductsListComponent implements OnInit {
 
   onBuyNow(product) {
     this.purchasesService.buyNow(product);
-  }
-
-  onAddToCart(product) {
-    this.purchasesService.addToCart(product);
   }
 }
