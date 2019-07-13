@@ -9,10 +9,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent implements OnInit {
-  products;
-  numberOfProducts;
-  pageNumber;
-  pageSize;
+  products: [{}];
+  numberOfProducts: Number;
+  pageNumber: Number;
+  pageSize: Number;
 
   constructor(
     public productsService: ProductsService,

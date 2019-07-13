@@ -15,6 +15,7 @@ export class FillInfoDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<FillInfoDialogComponent>) { }
 
   ngOnInit() {
+    // Create the form group with validation
     this.fillUserInfoForm = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]),
       address: new FormControl('', [Validators.required])

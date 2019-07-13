@@ -1,0 +1,9 @@
+<mat-toolbar color="primary" [class.mat-elevation-z6]="true" fxLayout="row" fxLayoutAlign="space-between center">
+  <div style="width:100%;" fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="1em">
+      <a [routerLink]="['/products']">Products</a>
+      <a [routerLink]="['/purchases']">Purchases</a>
+    </div>
+    <span>{{ userInfo?.username }}</span>
+  </div>
+</mat-toolbar>

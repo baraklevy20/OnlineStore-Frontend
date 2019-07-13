@@ -9,10 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { MatButtonModule, MatCardModule, MatListModule, MatGridListModule, MatDividerModule, MatLineModule, MatIconModule, MatPaginatorModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatSnackBarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatListModule, MatGridListModule, MatDividerModule, MatLineModule, MatIconModule, MatPaginatorModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatSnackBarModule, MatToolbarModule } from '@angular/material';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TopBarComponent } from './top-bar/top-bar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProductsListComponent,
     FillInfoDialogComponent,
     PurchaseDialogComponent,
-    PurchasesListComponent
+    PurchasesListComponent,
+    TopBarComponent
   ],
   entryComponents: [
     FillInfoDialogComponent,
@@ -46,7 +48,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule
   ],
   providers: [
     {

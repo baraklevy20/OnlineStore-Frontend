@@ -1,0 +1,18 @@
+mat-toolbar {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:2;
+    height: 3em;
+}
+
+a {
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+  
+a:hover {
+opacity: 0.8;
+}

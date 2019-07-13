@@ -2,14 +2,15 @@ import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { PurchaseDialogComponent } from './purchaseDialog/purchaseDialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { UsersService } from './../users/users.service';
+import { UsersService, GetUserInfoCaller } from './../users/users.service';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PurchasesService {
-  
+export class PurchasesService implements GetUserInfoCaller {
+  product;
+
   constructor(
     private dialog: MatDialog,
     private usersService: UsersService,
@@ -17,20 +18,21 @@ export class PurchasesService {
   ) { }
 
   buyNow(product) {
+    this.product = product;
     // Fill user info before buying
     if (!this.usersService.hasInfo()) {
-      this.usersService.fillInfo(this);
+      this.usersService.showFillInfoDialog(this);
       return;
     }
 
-    this.onUserInfoFilled(product);
+    this.onUserInfoFilled();
   }
 
-  onUserInfoFilled(product) {
+  onUserInfoFilled() {
     // After registering before a purchase, we open the purchase dialog
     this.dialog.open(PurchaseDialogComponent, {
       width: '400px',
-      data: product
+      data: this.product
     });
   }
 

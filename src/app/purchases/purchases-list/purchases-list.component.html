@@ -1,4 +1,3 @@
-<h1>Products</h1>
 <section class="mat-typography">
   <div fxLayout="row wrap" fxLayoutAlign="space-evenly stretch" fxLayoutGap="1em">
     <div *ngFor="let product of purchases | async" style='max-width: 400px;'>
@@ -15,5 +14,6 @@
       </div>
       <mat-divider></mat-divider>
     </div>
+    <div *ngIf="(purchases | async)?.length === 0">You haven't made any purchases yet!</div>
   </div>
 </section>

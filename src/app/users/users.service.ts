@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs';
 import { environment } from './../../environments/environment';
 import { FillInfoDialogComponent } from './fillInfoDialog/fillInfoDialog.component';
 import { Injectable } from '@angular/core';
@@ -9,11 +10,16 @@ export interface UserInfo {
   address: string;
 }
 
+export interface GetUserInfoCaller {
+  onUserInfoFilled(): any;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  userInfo: UserInfo;
+  public userInfo: UserInfo;
+  public userInfoObservable: Subject<any> = new Subject<any>();
 
   constructor(
     private dialog: MatDialog,
@@ -25,13 +31,15 @@ export class UsersService {
     if (!this.userInfo) {
       this.userInfo = {} as UserInfo
     }
+    
+    this.userInfoObservable.next(this.userInfo);
   }
 
   hasInfo() {
     return this.userInfo.username !== undefined;
   }
 
-  fillInfo(caller) {
+  showFillInfoDialog(caller: GetUserInfoCaller) {
     const dialogRef = this.dialog.open(FillInfoDialogComponent, {
       width: '400px'
     });
@@ -40,12 +48,13 @@ export class UsersService {
       // If the user entered their details, we register them on the backend      
       if (result) {
         this.userInfo = result;
+        this.userInfoObservable.next(this.userInfo);
         this.registerUser(caller);
       }
     });
   }
 
-  registerUser(caller) {
+  registerUser(caller: GetUserInfoCaller) {
     // Save the user on the backend
     this.http.post(`${environment.api_base_url}/users`, this.userInfo).subscribe(result => {
       // Save the username in the local storage

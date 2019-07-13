@@ -1,5 +1,6 @@
 import { PurchasesService } from './../purchases.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-purchases-list',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./purchases-list.component.css']
 })
 export class PurchasesListComponent implements OnInit {
-  purchases;
+  purchases: Observable<any>;
 
   constructor(
     purchasesService: PurchasesService

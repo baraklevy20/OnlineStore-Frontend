@@ -48,7 +48,7 @@ export class PurchaseDialogComponent implements OnInit, AfterViewChecked {
             duration: 3000
           });
           this.product.sold++;
-          this.productsService.updateProduct(this.product.index, this.product);
+          this.productsService.setProduct(this.product.index, this.product);
         }, error => {
           this.snackBar.open(error.message, "X");
         }, () => {

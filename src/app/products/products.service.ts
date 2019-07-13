@@ -28,7 +28,7 @@ export class ProductsService {
     });
   }
 
-  updateProduct(productIndex, product) {
+  setProduct(productIndex, product) {
     this.products[productIndex] = product;
 
     // Notify everyone who's subscribed
